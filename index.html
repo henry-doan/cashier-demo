@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cashier</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.16/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body ng-app="app">
+    <div class="container" ng-controller="myCtrl">
+        <section ng-app="app" ng-controller="myCtrl">
+            <span class="label">Ordered By: {{orderByField}}, Reverse Sort: {{reverseSort}}</span>
+            <br>
+            <br>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            <a href="#" ng-click="orderByField='title'; reverseSort = !reverseSort">
+			          Title <span ng-show="orderByField == 'title'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+			          </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="orderByField='cost'; reverseSort = !reverseSort">
+			            Cost <span ng-show="orderByField == 'cost'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+			          </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="orderByField='notes'; reverseSort = !reverseSort">
+			          Notes <span ng-show="orderByField == 'notes'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+			          </a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="transaction in transactions | orderBy:orderByField:reverseSort">
+                        <td>{{ transaction.title }}</td>
+                        <td>{{ transaction.cost }}</td>
+                        <td>{{ transaction.notes }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <pre>{{ transactions }}</pre>
+        </section>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
